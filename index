@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis Interaktif: Adobe Photoshop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #1a202c;
+        }
+        .chart-container-large {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container-large {
+                height: 450px;
+                max-height: 500px;
+            }
+        }
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #E5E7EB;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding-bottom: 2rem;
+        }
+        .timeline-item:nth-child(odd) {
+            padding-right: 2rem;
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            padding-left: 2rem;
+            left: 50%;
+            text-align: left;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            top: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: #7A5195;
+            border-radius: 9999px;
+            border: 4px solid #F8F9FA;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -0.625rem;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -0.625rem;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .stat-sub {
+            font-size: 0.875rem;
+            color: #4A5568;
+        }
+        h1, h2, h3 {
+            color: #003F5C;
+        }
+        .color-dot {
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-right: 0.25rem;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        .gemini-loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #7A5195;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .gemini-result {
+            background-color: #F8F9FA;
+            border-left: 4px solid #7A5195;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.25rem;
+            color: #1a202c;
+            line-height: 1.6;
+            display: none;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-6 md:px-8 md:py-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-center" style="color: #003F5C;">Materi Komprehensif: Adobe Photoshop</h1>
+            <p class="text-lg md:text-xl text-center text-gray-700 mt-2">Infografis Interaktif untuk Siswa DKV Kelas X</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="mb-12">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 text-center">
+                <h2 class="text-2xl font-bold mb-4">Apa Itu Photoshop?</h2>
+                <p class="text-lg text-gray-800 max-w-3xl mx-auto">
+                    Adobe Photoshop adalah <strong style="color: #374C80;">editor grafis raster</strong> terkemuka di dunia. Sejak awal mulanya sebagai program 'Display' sederhana pada tahun 1987, Photoshop telah berevolusi menjadi <strong style="color: #374C80;">standar industri</strong> yang esensial untuk manipulasi foto, desain grafis, dan ilustrasi digital bagi para profesional DKV di seluruh dunia.
+                </p>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Evolusi Photoshop</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold" style="color: #7A5195;">1987: Ide Awal</h3>
+                        <p class="text-gray-700">Thomas & John Knoll mengembangkan program 'Display' untuk gambar skala abu-abu.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold" style="color: #BC5090;">1990: Photoshop 1.0</h3>
+                        <p class="text-gray-700">Versi pertama dirilis secara eksklusif untuk platform Macintosh.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold" style="color: #EF5675;">Versi 2.0</h3>
+                        <p class="text-gray-700">Ekspansi ke Windows, membuka Photoshop ke audiens yang jauh lebih luas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold" style="color: #FF764A;">2025: Versi Modern</h3>
+                        <p class="text-gray-700">Integrasi AI, fitur cloud, dan kolaborasi menjadi standar (Contoh: v26.11).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="core-features" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Fitur Kunci Photoshop</h2>
+            <p class="text-lg text-center text-gray-800 max-w-3xl mx-auto mb-8">
+                Kekuatan sejati Photoshop terletak pada alur kerja non-destruktif dan perangkatnya yang presisi. Fitur-fitur ini adalah fondasi yang harus dipahami setiap desainer DKV.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3" style="color: #374C80;">Layers (Lapisan)</h3>
+                    <p class="text-gray-700">Bekerja seperti lembaran transparan yang ditumpuk. Ini adalah inti dari pengeditan <strong class="font-semibold">non-destruktif</strong>, memungkinkan Anda mengedit elemen (teks, gambar, efek) secara terpisah tanpa merusak gambar aslinya.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3" style="color: #7A5195;">Selections & Masking</h3>
+                    <p class="text-gray-700">Alat seleksi (Lasso, Magic Wand) digunakan untuk <strong class="font-semibold">mengisolasi area</strong>. Masking (Layer/Clipping Mask) adalah cara non-destruktif untuk <strong class="font-semibold">mengontrol visibilitas</strong>, sangat penting untuk menggabungkan gambar atau mengganti latar belakang.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3" style="color: #BC5090;">Image Adjustments</h3>
+                    <p class="text-gray-700">Fitur seperti Levels, Curves, dan Hue/Saturation untuk <strong class="font-semibold">mengoreksi warna dan tone</strong>. Cara terbaik menggunakannya adalah melalui <strong class="font-semibold">Adjustment Layers</strong> agar tetap non-destruktif.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3" style="color: #EF5675;">Painting & Drawing Tools</h3>
+                    <p class="text-gray-700">Perangkat seperti <strong class="font-semibold">Brush Tool</strong> (sapuan lembut) dan <strong class="font-semibold">Pencil Tool</strong> (garis tegas) adalah dasar dari ilustrasi digital. Didukung oleh Dodge (mencerahkan) dan Burn (menggelapkan).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-essentials" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Esensi Teknis: Digital vs. Cetak</h2>
+            <p class="text-lg text-center text-gray-800 max-w-3xl mx-auto mb-8">
+                Memahami perbedaan antara desain untuk layar dan untuk cetak adalah fundamental. Kesalahan dalam pengaturan ini dapat sangat memengaruhi hasil akhir karya Anda.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="stat-card">
+                    <h3 class="text-xl font-bold mb-3" style="color: #FF764A;">Resolusi Digital</h3>
+                    <div class="stat-number" style="color: #FF764A;">72</div>
+                    <div class="stat-label">PPI</div>
+                    <p class="stat-sub">(Pixels Per Inch) Standar untuk web, media sosial, dan semua tampilan layar.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-bold mb-3" style="color: #FFA600;">Resolusi Cetak</h3>
+                    <div class="stat-number" style="color: #FFA600;">300</div>
+                    <div class="stat-label">DPI</div>
+                    <p class="stat-sub">(Dots Per Inch) Standar minimum untuk hasil cetak berkualitas tinggi (poster, majalah).</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-bold mb-3" style="color: #EF5675;">Mode Warna Digital</h3>
+                    <div class="stat-number text-4xl my-2">RGB</div>
+                    <div>
+                        <span class="color-dot" style="background-color: #FF0000;"></span>
+                        <span class="color-dot" style="background-color: #00FF00;"></span>
+                        <span class="color-dot" style="background-color: #0000FF;"></span>
+                    </div>
+                    <p class="stat-sub">(Red, Green, Blue) Berbasis cahaya, digunakan untuk semua desain di layar.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-bold mb-3" style="color: #BC5090;">Mode Warna Cetak</h3>
+                    <div class="stat-number text-4xl my-2">CMYK</div>
+                    <div>
+                        <span class="color-dot" style="background-color: #00FFFF;"></span>
+                        <span class="color-dot" style="background-color: #FF00FF;"></span>
+                        <span class="color-dot" style="background-color: #FFFF00;"></span>
+                        <span class="color-dot" style="background-color: #000000;"></span>
+                    </div>
+                    <p class="stat-sub">(Cyan, Magenta, Yellow, Key) Berbasis tinta, wajib untuk semua desain yang akan dicetak.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="file-formats" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Membedah Format File</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <p class="text-lg text-gray-800 max-w-3xl mx-auto mb-6 text-center">
+                    Memilih format file yang tepat sangat krusial. Radar chart di bawah ini membandingkan format file paling umum berdasarkan lima kriteria: kemampuan <strong class="font-semibold">Editing</strong>, ukuran file (<strong class="font-semibold">Small Size</strong>), kegunaan di <strong class="font-semibold">Web</strong>, dukungan <strong class="font-semibold">Transparansi</strong>, dan kualitas <strong class="font-semibold">Cetak</strong>.
+                </p>
+                <div class="chart-container-large">
+                    <canvas id="fileFormatChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="future" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Masa Depan: AI & Cloud</h2>
+            <p class="text-lg text-center text-gray-800 max-w-3xl mx-auto mb-8">
+                Photoshop tidak lagi hanya tentang alat manual. Masa depannya didorong oleh Kecerdasan Buatan (AI) dan integrasi cloud yang mulus.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3" style="color: #003F5C;">✨ Fitur Berbasis AI (Adobe Sensei)</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong class="font-semibold">Neural Filters:</strong> Mengedit potret secara drastis (ekspresi, usia) hanya dengan slider.</li>
+                        <li><strong class="font-semibold">Sky Replacement:</strong> Mendeteksi dan mengganti langit secara otomatis dalam hitungan detik.</li>
+                        <li><strong class="font-semibold">Content-Aware Fill:</strong> Mengisi area yang tidak diinginkan secara cerdas berdasarkan lingkungan sekitarnya.</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3" style="color: #374C80;">☁️ Integrasi Creative Cloud</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong class="font-semibold">Alur Kerja Mulus:</strong> Pindah pekerjaan dengan mudah antara Photoshop, Illustrator, dan aplikasi Adobe lainnya.</li>
+                        <li><strong class="font-semibold">Aset Terpadu:</strong> Akses ke ribuan Adobe Fonts dan penyimpanan cloud terpusat untuk semua file Anda.</li>
+                        <li><strong class="font-semibold">Kolaborasi Online:</strong> Fitur 'Share for Review' memudahkan untuk mendapatkan umpan balik dari klien atau rekan satu tim.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="gemini-assistant" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">✨ Tanya Asisten DKV (Didukung Gemini)</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 max-w-3xl mx-auto">
+                <p class="text-lg text-gray-800 mb-4 text-center">
+                    Punya pertanyaan tentang Photoshop atau DKV? Tanyakan pada asisten AI kami!
+                </p>
+                <div class="flex flex-col md:flex-row gap-2">
+                    <input type="text" id="gemini-prompt" class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-7A5195" placeholder="Ketik pertanyaanmu di sini...">
+                    <button id="gemini-submit" class="text-white font-bold py-3 px-6 rounded-lg shadow hover:bg-opacity-90 transition-colors" style="background-color: #7A5195;">Tanya</button>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center mt-4">
+                    <button class="gemini-preset-prompt bg-gray-200 text-gray-700 text-sm py-1 px-3 rounded-full hover:bg-gray-300" data-prompt="Jelaskan apa itu 'non-destruktif' dalam Photoshop">Jelaskan 'non-destruktif'</button>
+                    <button class="gemini-preset-prompt bg-gray-200 text-gray-700 text-sm py-1 px-3 rounded-full hover:bg-gray-300" data-prompt="Beri saya 3 ide proyek poster Photoshop untuk pemula">3 Ide Proyek Poster</button>
+                    <button class="gemini-preset-prompt bg-gray-200 text-gray-700 text-sm py-1 px-3 rounded-full hover:bg-gray-300" data-prompt="Apa 5 karir DKV yang paling banyak memakai Photoshop?">Karir DKV & Photoshop</button>
+                </div>
+                <div id="gemini-loader" class="gemini-loader"></div>
+                <div id="gemini-result-container" class="gemini-result"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-gray-200 mt-12">
+        <p class="text-gray-600">Infografis ini dibuat untuk Kelas X DKV | SMK Negeri 4 Samarinda.</p>
+    </footer>
+
+    <script>
+        window.onload = function () {
+            
+            function wrapLabel(label) {
+                if (label.length <= 16) { return label; }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    const testLine = currentLine.length > 0 ? currentLine + ' ' + word : word;
+                    if (testLine.length > 16) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = testLine;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            }
+
+            const tooltipTitleCallback = function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const baseChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const ctxRadar = document.getElementById('fileFormatChart').getContext('2d');
+            const rawLabels = ['Editing', 'Small File Size', 'Web Use', 'Transparency Support', 'Print Quality'];
+            const processedLabels = rawLabels.map(wrapLabel);
+            
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: processedLabels,
+                    datasets: [
+                        {
+                            label: 'PSD',
+                            data: [10, 2, 5, 10, 8],
+                            borderColor: '#BC5090',
+                            backgroundColor: 'rgba(188, 80, 144, 0.2)',
+                            pointBackgroundColor: '#BC5090',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#BC5090'
+                        },
+                        {
+                            label: 'JPEG',
+                            data: [2, 10, 10, 0, 3],
+                            borderColor: '#EF5675',
+                            backgroundColor: 'rgba(239, 86, 117, 0.2)',
+                            pointBackgroundColor: '#EF5675',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#EF5675'
+                        },
+                        {
+                            label: 'PNG',
+                            data: [4, 7, 9, 10, 5],
+                            borderColor: '#FF764A',
+                            backgroundColor: 'rgba(255, 118, 74, 0.2)',
+                            pointBackgroundColor: '#FF764A',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#FF764A'
+                        },
+                        {
+                            label: 'TIFF',
+                            data: [8, 1, 3, 8, 10],
+                            borderColor: '#FFA600',
+                            backgroundColor: 'rgba(255, 166, 0, 0.2)',
+                            pointBackgroundColor: '#FFA600',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#FFA600'
+                        }
+                    ]
+                },
+                options: {
+                    ...baseChartOptions,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#E5E7EB' },
+                            grid: { color: '#E5E7EB' },
+                            pointLabels: {
+                                font: {
+                                    size: 13,
+                                    weight: '600'
+                                },
+                                color: '#003F5C'
+                            },
+                            ticks: {
+                                backdropColor: '#F8F9FA',
+                                backdropPadding: 4,
+                                color: '#003F5C',
+                                stepSize: 2,
+                                font: {
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...baseChartOptions.plugins,
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#003F5C',
+                                font: {
+                                    size: 14,
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- Gemini API Integration ---
+            const geminiSubmit = document.getElementById('gemini-submit');
+            const geminiPrompt = document.getElementById('gemini-prompt');
+            const geminiLoader = document.getElementById('gemini-loader');
+            const geminiResultContainer = document.getElementById('gemini-result-container');
+            const presetButtons = document.querySelectorAll('.gemini-preset-prompt');
+
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`API Error: ${response.status} ${JSON.stringify(errorData)}`);
+                    }
+                    return response.json();
+                } catch (error) {
+                    if (retries > 0) {
+                        await new Promise(res => setTimeout(res, delay));
+                        return fetchWithRetry(url, options, retries - 1, delay * 2);
+                    } else {
+                        console.error("Gemini API call failed after retries:", error);
+                        throw error;
+                    }
+                }
+            }
+
+            async function callGemini(prompt) {
+                geminiLoader.style.display = 'block';
+                geminiResultContainer.style.display = 'none';
+                geminiResultContainer.textContent = '';
+
+                const systemPrompt = "Anda adalah asisten guru DKV yang ramah dan membantu. Jelaskan konsep-konsep desain dan Photoshop dengan bahasa yang mudah dipahami untuk siswa SMK (Kelas 10). Jaga agar jawaban tetap singkat, jelas, dan fokus (maksimal 2-3 paragraf). Gunakan bahasa Indonesia.";
+                
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
+
+                try {
+                    const result = await fetchWithRetry(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) {
+                        geminiResultContainer.textContent = text;
+                        geminiResultContainer.style.display = 'block';
+                    } else {
+                        geminiResultContainer.textContent = 'Maaf, terjadi kesalahan saat mengambil jawaban. Silakan coba lagi.';
+                        geminiResultContainer.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini:', error);
+                    geminiResultContainer.textContent = 'Maaf, terjadi kesalahan koneksi. Periksa konsol untuk detailnya.';
+                    geminiResultContainer.style.display = 'block';
+                } finally {
+                    geminiLoader.style.display = 'none';
+                }
+            }
+
+            geminiSubmit.addEventListener('click', () => {
+                const prompt = geminiPrompt.value;
+                if (prompt.trim()) {
+                    callGemini(prompt);
+                }
+            });
+
+            presetButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const prompt = button.dataset.prompt;
+                    geminiPrompt.value = prompt;
+                    callGemini(prompt);
+                });
+            });
+            
+        };
+    </script>
+</body>
+</html>
+
